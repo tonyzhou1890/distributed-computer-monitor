@@ -14,7 +14,7 @@ func main() {
 		envCl string
 	)
 	// 获取命令行参数
-	flag.StringVar(&envCl, "e", "dev", "运行环境：env / prod")
+	flag.StringVar(&envCl, "e", "dev", "运行环境：dev / prod")
 	flag.Parse()
 
 	// 初始化配置

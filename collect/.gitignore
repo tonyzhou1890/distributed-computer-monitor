@@ -33,3 +33,4 @@ pid.txt
 .DS_Store
 
 config.json
+/dist
