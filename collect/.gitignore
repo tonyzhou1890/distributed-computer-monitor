@@ -32,7 +32,4 @@ logs/base/*
 pid.txt
 .DS_Store
 
-*.db
-
-node_modules
-dist/
+config.json
