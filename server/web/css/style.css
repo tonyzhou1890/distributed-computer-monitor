@@ -1,0 +1,80 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.header-function {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.time-select {
+  margin-left: 20px;
+}
+
+.time-select[data-time='1'] .btn-1 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.time-select[data-time='2'] .btn-2 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.time-select[data-time='3'] .btn-3 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.time-select[data-time='4'] .btn-4 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.body {
+  width: 100%;
+  height: calc(100vh - 50px);
+  box-sizing: border-box;
+  padding: 15px;
+  overflow: auto;
+}
+
+.body-section {
+  width: 100%;
+}
+
+.chart-title {
+  margin: 0;
+}
+
+.charts {
+  width: 100%;
+}
+
+.chart-item {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.chart {
+  width: 100%;
+  height: 300px;
+}

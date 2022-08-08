@@ -1,0 +1,10 @@
+mode: "debug"
+server:
+  appName: "distrubited-computer-monitor"
+  address: "localhost"
+  port: "10020"
+  env: "dev"
+database:
+  sqlite:
+    path: "./db/data.db"
+    maxDay: 90

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>分布式主机资源监控</title>
+  <!-- <script crossorigin="anonymous" integrity="sha512-2L0h0GhoIHQEjti/1KwfjcbyaTHy+hPPhE1o5wTCmviYcPO/TD9oZvUxFQtWvBkCSTIpt+fjsx1CCx6ekb51gw==" src="https://lib.baomitu.com/echarts/5.3.3/echarts.min.js"></script> -->
+  <script crossorigin="anonymous" integrity="sha512-SMG/KbZuIyH5jBNwtm4k7pTVojbsHBrDPtOQbPFfwHzX3ady3aijrSxWeGvyO7wrwXzKjQUidSSdF+ae/wwc9Q==" src="https://lib.baomitu.com/echarts/5.3.3/echarts.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-R6oJCPACwP5Bd9x8kcLYI0ZyDZyOXCYQbaWWEKOTA1UeVA3oM8FJ9yRHEIHeHkmX" src="https://lib.baomitu.com/art-template/4.13.2/lib/template-web.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw==" src="https://lib.baomitu.com/dayjs/1.11.4/dayjs.min.js"></script>
+  <script src="./js/index.js" charset="utf-8"></script>
+  <!-- 主机列表 -->
+  <script type="text/html" id="selectTpl">
+    <select id="hostSelect">
+      {{each hostList}}
+      <option value="{{ $value.id }}">{{ $value.hostname }}</option>
+      {{/each}}
+    </select>
+  </script>
+</head>
+<body>
+  <section id="app">
+    <header class="header">
+      <h1 class="title">分布式主机资源监控</h1>
+      <div class="header-function">
+        <div class="host-list" id="hostList"></div>
+        <div class="time-select" id="timeSelect">
+          <button class="btn-1" onclick="handleTimeChange(1)">1个小时</button>
+          <button class="btn-2" onclick="handleTimeChange(2)">1天</button>
+          <button class="btn-3" onclick="handleTimeChange(3)">1个月</button>
+          <button class="btn-4" onclick="handleTimeChange(4)">3个月</button>
+        </div>
+      </div>
+    </header>
+    <div class="body">
+      <section class="body-section cpu">
+        <h2 class="chart-title">处理器</h2>
+        <div class="cpu-info">
+          <p class="model" id="cpuModel">型号：</p>
+          <p class="model" id="cpuCore">核心：</p>
+        </div>
+        <div class="charts">
+          <div class="chart-item">
+            <div class="chart" id="cpuLoadChart"></div>
+          </div>
+          <div class="chart-item">
+            <div class="chart" id="cpuTempChart"></div>
+          </div>
+        </div>
+      </section>
+      <section class="body-section cpu">
+        <h2 class="chart-title">内存</h2>
+        <div class="mem-info">
+          <p class="cap" id="memCap">容量：</p>
+        </div>
+        <div class="charts">
+          <div class="chart-item">
+            <div class="chart" id="memLoadChart"></div>
+          </div>
+        </div>
+      </section>
+      <section class="body-section cpu">
+        <h2 class="chart-title">内存</h2>
+        <div class="swap-info">
+          <p class="cap" id="swapCap">容量：</p>
+        </div>
+        <div class="charts">
+          <div class="chart-item">
+            <div class="chart" id="swapLoadChart"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</body>
+</html>
