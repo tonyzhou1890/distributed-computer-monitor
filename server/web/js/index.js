@@ -70,7 +70,8 @@ function renderHostList() {
 
 // 主机切换
 function handleHostChange(ev) {
-  host = Number(ev.detail.value)
+  console.log(ev.target.value)
+  host = Number(ev.target.value)
   getHostData()
 }
 

@@ -23,11 +23,19 @@ func GetHostList(c *gin.Context) (res []host.HostDataType, err error) {
 	// rows, sqlerr := db.GSqlite.Query("SELECT * FROM host")
 	db, err := sql.Open("sqlite3", config.GConfig.Database.Sqlite.Path)
 	util.CheckErr(err)
-	rows, err := db.Query("SELECT * FROM host")
+	// rows, err := db.Query("SELECT id, hostname, datetime(created), datetime(updated) FROM host")
+	/**
+	 * 用 datetime 把时间从 2022-08-09T16:24:28Z 变成 2022-08-09 16:24:28
+	 * 有点奇怪。如果用 datetime(created, 'localtime') 转换，则时间会快八个小时，不使用 datetime 也会快 8 个小时。虽然知道是时区问题，但不知如何解决。网络上的解决方案都是 date(created, 'localtime')。
+	 **/
+	rows, err := db.Query("SELECT id, hostname, datetime(created), datetime(updated) FROM host")
 	util.CheckErr(err)
 	for rows.Next() {
 		var host = new(host.HostDataType)
 		err = rows.Scan(&host.ID, &host.Hostname, &host.Created, &host.Updated)
+		// host.Created = time.Unix(host.Created, 0).Local().String()
+		fmt.Print(host.Created, "\n", host.Updated, "\n")
+		fmt.Print(time.Now())
 		util.CheckErr(err)
 		res = append(res, *host)
 	}
@@ -68,7 +76,7 @@ func GetRecordList(c *gin.Context) (res []record.RecordDataType, err error) {
 		}
 	} else {
 		// 查询数据列表
-		rows, err := db.Query(`SELECT * FROM record WHERE host_id=? 
+		rows, err := db.Query(`SELECT id, host_id, cpu_type, cpu_core, cpu_load, cpu_temp, mem_cap, mem_load, mem_temp, swap_cap, swap_load, gpu_type, gpu_load, gpu_temp, net_up, net_down, datetime(created) FROM record WHERE host_id=? 
 			and created>=? and created<=?
 		`, reqData.HostId, reqData.StartTime.String(), reqData.EndTime.String())
 		defer rows.Close()

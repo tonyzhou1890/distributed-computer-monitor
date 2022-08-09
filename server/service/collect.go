@@ -6,7 +6,7 @@ import (
 	"distributed-computer-monitor-server/config"
 	"distributed-computer-monitor-server/util"
 	// "fmt"
-	"time"
+	// "time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -45,9 +45,9 @@ func PostRecord(c *gin.Context) (err error) {
 		}
 	} else {
 		// 主机存在，更新数据(updated)
-		stmt, err := db.Prepare("UPDATE host SET updated=? WHERE id=?")
+		stmt, err := db.Prepare("UPDATE host SET updated=datetime('now', 'localtime') WHERE id=?")
 		util.CheckErr(err)
-		_, err = stmt.Exec(time.Now().Local(), hostId)
+		_, err = stmt.Exec(hostId)
 		util.CheckErr(err)
 	}
 
