@@ -24,6 +24,7 @@ let host = null, // 当前主机
 
 window.onload = () => {
   getHostList()
+  window.addEventListener('resize', chartResize)
 }
 
 // 获取主机列表
@@ -239,4 +240,12 @@ function toAccuracy(val, n) {
   val = typeof val === 'number' ? val : 0
   n = typeof n === 'number' ? n : 0
   return Number(val.toFixed(n))
+}
+
+// 图表随屏幕变化
+function chartResize() {
+  window.cpuLoadChartIns?.resize()
+  window.cpuTempChartIns?.resize()
+  window.memLoadChartIns?.resize()
+  window.swapLoadChartIns?.resize()
 }
