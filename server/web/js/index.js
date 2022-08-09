@@ -126,9 +126,9 @@ function getHostData() {
               dataMap.cpu.core = item.cpuCore
               dataMap.cpu.load.push(toAccuracy(item.cpuLoad, 1))
               dataMap.cpu.temp.push(toAccuracy(item.cpuTemp, 1))
-              dataMap.mem.cap = item.memCap / 1024 / 1024
+              dataMap.mem.cap = toAccuracy(item.memCap / 1024 / 1024, 3)
               dataMap.mem.load.push(toAccuracy(item.memLoad, 1))
-              dataMap.swap.cap = item.swapCap / 1024 / 1024
+              dataMap.swap.cap = toAccuracy(item.swapCap / 1024 / 1024, 3)
               dataMap.swap.load.push(toAccuracy(item.swapLoad, 1))
             })
             // 显示相关信息
