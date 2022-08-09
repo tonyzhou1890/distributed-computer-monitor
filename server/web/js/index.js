@@ -121,7 +121,7 @@ function getHostData() {
             dataMap = JSON.parse(JSON.stringify(defaultDataMap))
             // 信息处理
             list.map(item => {
-              dataMap.xAxis.push(dayjs(item.created).format('MM:DD HH:mm'))
+              dataMap.xAxis.push(dayjs(item.created).format('MM-DD HH:mm'))
               dataMap.cpu.model = item.cpuType
               dataMap.cpu.core = item.cpuCore
               dataMap.cpu.load.push(toAccuracy(item.cpuLoad, 1))
